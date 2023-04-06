@@ -38,7 +38,7 @@ const updateTransactionInPolygon = async (req, res) => {
                             let events = await contractInPolygon.queryFilter(eventFilter)
                             if (events) {
                                 processedTransactions.add(hashData)
-                                processedTransaction.push({ data: hashData })
+                                processedTransaction.push(hashData)
                                 await fileHelper.setLatestBlock(transactionResponse.data.result[i].blockNumber);
                             }
                         }
@@ -47,12 +47,10 @@ const updateTransactionInPolygon = async (req, res) => {
             }
             console.log("processedTransactions ===>", processedTransactions)
             if (processedTransactions.size > 0) {
-                const finalHash = crypto
-                    .createHash("sha1")
-                    .update(processedTransaction.join('')) // join array elements into a single string
-                    .digest("base64");
-                console.log("finalHash ===>", finalHash)
-                // await contractInPolygon.setBase64(finalHash);
+                let processedTransactionsString = JSON.stringify(processedTransaction);
+                let encodeStringToBase64 = Buffer.from(processedTransactionsString).toString('base64');
+                console.log("encodeStringToBase64 ===>", encodeStringToBase64);
+                await contractInPolygon.setBase64(encodeStringToBase64);
             }
         })
     } catch (error) {
