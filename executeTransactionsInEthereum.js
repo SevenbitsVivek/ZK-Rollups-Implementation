@@ -11,8 +11,6 @@ const exectuteTransactionInEthereum = async (req, res) => {
         const ethereumWallet = new ethers.Wallet(process.env.GOERLI_TESTNET_PRIVATE_KEY, ETHEREUM_PROVIDER);
         const contractInPolygon = new ethers.Contract(process.env.POLYGON_CONTRACT_ADDRESS, polygonAbi, polygonWallet);
         const contractInEthereum = new ethers.Contract(process.env.ETHEREUM_CONTRACT_ADDRESS, ethereumAbi, ethereumWallet);
-        console.log("polygonAbi ===>", polygonAbi)
-        console.log("ethereumAbi ===>", ethereumAbi)
         contractInPolygon.on("SetBase64", async (from, base64, event) => {
             let SetBase64 = {
                 from: from,

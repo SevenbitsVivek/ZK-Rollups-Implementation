@@ -7,7 +7,6 @@ const exectuteTransactionInPolygon = async (req, res) => {
         const POLYGON_PROVIDER = new ethers.providers.JsonRpcProvider(process.env.POLYGON_PROVIDER);
         const polygonWallet = new ethers.Wallet(process.env.POLYGON_TESTNET_PRIVATE_KEY, POLYGON_PROVIDER);
         const contractInPolygon = new ethers.Contract(process.env.POLYGON_CONTRACT_ADDRESS, polygonAbi, polygonWallet);
-        console.log("polygonAbi ===>", polygonAbi)
         for (let i = 1; i <= 10; i++) {
             const transactionResponse = await contractInPolygon.set(i)
         }
