@@ -45,7 +45,6 @@ const updateTransactionInPolygon = async (req, res) => {
                     }
                 }
             }
-            console.log("processedTransaction ===>", processedTransaction)
             console.log("processedTransactions ===>", processedTransactions)
             if (processedTransactions.size > 0) {
                 const finalHash = crypto
