@@ -13,6 +13,20 @@ async function setLatestBlock(blockNumber) {
     });
 }
 
+async function getStartBlock(startBlock) {
+    return new Promise((resolve, reject) => {
+        fs.readFile('deposit.json', function (err, data) {
+            if (err) {
+                reject(err);
+            } else {
+                startBlock = JSON.parse(data);
+                resolve(startBlock);
+            }
+        });
+    });
+}
+
 module.exports = {
-    setLatestBlock: setLatestBlock
+    setLatestBlock: setLatestBlock,
+    getStartBlock: getStartBlock
 }
