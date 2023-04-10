@@ -1,16 +1,16 @@
 const fs = require('fs');
 
 async function setLatestBlock(blockNumber) {
-    try {
-        fs.writeFile('deposit.json', blockNumber, function (err) {
-            if (err) return console.log(err);
-            console.log('Value updated in json file');
+    return new Promise((resolve, reject) => {
+        fs.writeFile('deposit.json', blockNumber.toString(), function (err) {
+            if (err) {
+                reject(err);
+            } else {
+                console.log('Value updated in json file');
+                resolve(blockNumber);
+            }
         });
-    }
-    catch (err) {
-        ShortMessage = "setLatestBlock";
-        const FullMessage = err.message
-    }
+    });
 }
 
 module.exports = {

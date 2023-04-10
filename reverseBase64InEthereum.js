@@ -11,7 +11,6 @@ const reverseBase64InEthereum = async (req, res) => {
             let SetBase64 = {
                 from: from,
                 base64: base64,
-                data: event,
                 timestamp: Date.now()
             }
             console.log(JSON.stringify(SetBase64, null, 5))
