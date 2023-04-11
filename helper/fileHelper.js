@@ -1,28 +1,24 @@
 const fs = require('fs');
 
 async function setLatestBlock(blockNumber) {
-    return new Promise((resolve, reject) => {
-        fs.writeFile('deposit.json', blockNumber.toString(), function (err) {
-            if (err) {
-                reject(err);
-            } else {
-                console.log('Value updated in json file');
-                resolve(blockNumber);
-            }
-        });
+    fs.writeFile('deposit.json', blockNumber.toString(), function (err) {
+        try {
+            console.log('Value updated in json file');
+            return blockNumber;
+        } catch (error) {
+            throw error;
+        }
     });
 }
 
 async function getStartBlock(startBlock) {
-    return new Promise((resolve, reject) => {
-        fs.readFile('deposit.json', function (err, data) {
-            if (err) {
-                reject(err);
-            } else {
-                startBlock = JSON.parse(data);
-                resolve(startBlock);
-            }
-        });
+    fs.readFile('deposit.json', function (err, data) {
+        try {
+            startBlock = JSON.parse(data);
+            return startBlock;
+        } catch (error) {
+            throw error;
+        }
     });
 }
 
