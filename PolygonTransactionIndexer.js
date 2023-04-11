@@ -11,7 +11,7 @@ var START_BLOCK;
 
 const startTransactionIndexing = async (req, res) => {
     try {
-        console.log("Transaction ndexing has been started");
+        console.log("Transaction indexing has been started");
         START_BLOCK = await fileHelper.getStartBlock(START_BLOCK);
         console.log("START_BLOCK ===>", START_BLOCK);
         const getLatestBlockNumber = await etherHelper.getLatestBlockNumber();
