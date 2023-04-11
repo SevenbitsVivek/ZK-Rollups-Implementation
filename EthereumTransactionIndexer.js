@@ -1,12 +1,12 @@
 const ethers = require('ethers');
-const etherHelper = require('./helper/etherHelper.js');
-const base64Helper = require('./helper/base64Helper.js');
+const etherHelper = require('./helper/EtherHelper.js');
+const base64Helper = require('./helper/Base64Helper.js');
 const ethereumAbi = require('./artifacts/contracts/UpdateBase64Transaction.sol/UpdateBase64Transaction.json')["abi"]
 const ETHEREUM_PROVIDER = new ethers.providers.JsonRpcProvider(process.env.ETHEREUM_PROVIDER);
 const ethereumWallet = new ethers.Wallet(process.env.GOERLI_TESTNET_PRIVATE_KEY, ETHEREUM_PROVIDER);
 const ethereumContract = new ethers.Contract(process.env.ETHEREUM_CONTRACT_ADDRESS, ethereumAbi, ethereumWallet);
 
-var EventData
+var EventData;
 
 polygonContract.on("SetBase64", async (from, blockNumber, base64) => {
     EventData = {

@@ -1,7 +1,7 @@
 const ethers = require('ethers');
-const fileHelper = require('./helper/fileHelper.js');
-const etherHelper = require('./helper/etherHelper.js');
-const base64Helper = require('./helper/base64Helper.js');
+const fileHelper = require('./helper/FileHelper.js');
+const etherHelper = require('./helper/EtherHelper.js');
+const base64Helper = require('./helper/Base64Helper.js');
 const polygonAbi = require('./artifacts/contracts/UpdateTransaction.sol/UpdateTransaction.json')["abi"]
 const POLYGON_PROVIDER = new ethers.providers.JsonRpcProvider(process.env.POLYGON_PROVIDER);
 const polygonWallet = new ethers.Wallet(process.env.POLYGON_TESTNET_PRIVATE_KEY, POLYGON_PROVIDER);

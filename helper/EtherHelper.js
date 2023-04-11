@@ -1,6 +1,6 @@
 require("dotenv").config();
 const ethers = require('ethers');
-const base64Helper = require('./base64Helper.js');
+const base64Helper = require('./Base64Helper.js');
 const polygonAbi = require('../artifacts/contracts/UpdateTransaction.sol/UpdateTransaction.json')["abi"]
 const ethereumAbi = require('../artifacts/contracts/UpdateBase64Transaction.sol/UpdateBase64Transaction.json')["abi"]
 const POLYGON_PROVIDER = new ethers.providers.JsonRpcProvider('https://polygon-mumbai.infura.io/v3/4458cf4d1689497b9a38b1d6bbf05e78');
