@@ -29,5 +29,7 @@ ethereumContract.on("SetBase64", async (from, blockNumber, base64) => {
     console.log(JSON.stringify(EventDataInEthereum, null, 5))
     if (Number(EventData.blockNumber) === Number(blockNumber)) {
         await base64Helper.decodeBase64(base64)
+    } else {
+        console.log("BlockNumber dosen`t match");
     }
 })

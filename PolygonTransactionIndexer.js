@@ -51,5 +51,7 @@ polygonContract.on("SetBase64", async (from, blockNumber, base64) => {
         console.log("blockNumber is equal to START_BLOCK");
         await fileHelper.setLatestBlock(START_BLOCK);
         startTransactionIndexing();
+    } else {
+        console.log("BlockNumber dosen`t match with START_BLOCK");
     }
 })
