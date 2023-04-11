@@ -67,7 +67,5 @@ module.exports = {
     setBase64InPolygon: setBase64InPolygon,
     setBase64InEthereum: setBase64InEthereum,
     getBlock: getBlock,
-    getPolygonEvent: getPolygonEvent,
-    getEthereumEvent: getEthereumEvent,
     getLatestBlockNumber: getLatestBlockNumber
 }
