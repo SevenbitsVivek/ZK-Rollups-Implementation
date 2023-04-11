@@ -24,6 +24,12 @@ module.exports = {
     matic: {
       url: "https://polygon-mumbai.infura.io/v3/4458cf4d1689497b9a38b1d6bbf05e78",
       accounts: [process.env.POLYGON_TESTNET_PRIVATE_KEY]
+    },
+    //ganache
+    localhost: {
+      url: "HTTP://127.0.0.1:8545",
+      gas: 300000000,
+      accounts: [process.env.GOERLI_TESTNET_PRIVATE_KEY]
     }
   },
 
