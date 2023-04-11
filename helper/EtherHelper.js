@@ -1,6 +1,5 @@
 require("dotenv").config();
 const ethers = require('ethers');
-const base64Helper = require('./Base64Helper.js');
 const polygonAbi = require('../artifacts/contracts/UpdateTransaction.sol/UpdateTransaction.json')["abi"]
 const ethereumAbi = require('../artifacts/contracts/UpdateBase64Transaction.sol/UpdateBase64Transaction.json')["abi"]
 const POLYGON_PROVIDER = new ethers.providers.JsonRpcProvider('https://polygon-mumbai.infura.io/v3/4458cf4d1689497b9a38b1d6bbf05e78');
@@ -44,47 +43,6 @@ async function setBase64InEthereum(blockNumber, base64) {
             throw error;
         }
     }
-}
-
-async function getPolygonEvent() {
-    return new Promise(async (resolve, reject) => {
-        var err;
-        if (err) {
-            reject(err);
-        } else {
-            const polygonEvent = polygonContract.on("SetBase64", async (from, blockNumber, base64) => {
-                let SetBase64 = {
-                    from: from,
-                    blockNumber: blockNumber.toString(),
-                    base64: base64,
-                    timestamp: Date.now()
-                }
-                console.log(JSON.stringify(SetBase64, null, 5))
-            })
-            resolve(polygonEvent);
-        }
-    });
-}
-
-async function getEthereumEvent() {
-    return new Promise(async (resolve, reject) => {
-        var err;
-        if (err) {
-            reject(err);
-        } else {
-            const ethereumEvent = ethereumContract.on("SetBase64", async (from, blockNumber, base64) => {
-                let SetBase64 = {
-                    from: from,
-                    blockNumber: blockNumber.toString(),
-                    base64: base64,
-                    timestamp: Date.now()
-                }
-                console.log(JSON.stringify(SetBase64, null, 5))
-                await base64Helper.decodeBase64(base64)
-            })
-            resolve(ethereumEvent);
-        }
-    });
 }
 
 async function getBlock(START_BLOCK) {
