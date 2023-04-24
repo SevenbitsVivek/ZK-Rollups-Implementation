@@ -20,7 +20,7 @@ polygonContract.on("SetBase64", async (from, blockNumber, base64) => {
         timestamp: Date.now()
     }
     console.log(JSON.stringify(EventData, null, 5))
-    await etherHelper.setBase64InEthereum(blockNumber, encodeBase64)
+    await etherHelper.setBase64InEthereum(blockNumber, base64)
 })
 
 ethereumContract.on("SetBase64", async (from, blockNumber, base64) => {
