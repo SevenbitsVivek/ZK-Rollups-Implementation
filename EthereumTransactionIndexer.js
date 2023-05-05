@@ -10,16 +10,16 @@ const ethereumWallet = new ethers.Wallet(process.env.GOERLI_TESTNET_PRIVATE_KEY,
 const polygonContract = new ethers.Contract(process.env.POLYGON_CONTRACT_ADDRESS, polygonAbi, polygonWallet);
 const ethereumContract = new ethers.Contract(process.env.ETHEREUM_CONTRACT_ADDRESS, ethereumAbi, ethereumWallet);
 
-var EventData;
+var EventDataInPolygon;
 
 polygonContract.on("SetBase64", async (from, blockNumber, base64) => {
-    EventData = {
+    EventDataInPolygon = {
         from: from,
         blockNumber: blockNumber.toString(),
         base64: base64,
         timestamp: Date.now()
     }
-    console.log(JSON.stringify(EventData, null, 5))
+    console.log(JSON.stringify(EventDataInPolygon, null, 5))
     await etherHelper.setBase64InEthereum(blockNumber, base64)
 })
 
@@ -31,7 +31,7 @@ ethereumContract.on("SetBase64", async (from, blockNumber, base64) => {
         timestamp: Date.now()
     }
     console.log(JSON.stringify(EventDataInEthereum, null, 5))
-    if (Number(EventData.blockNumber) === Number(blockNumber)) {
+    if (Number(EventDataInPolygon.blockNumber) === Number(blockNumber)) {
         await base64Helper.decodeBase64(base64)
     } else {
         console.log("BlockNumber dosen`t match");
